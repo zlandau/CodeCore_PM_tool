@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>PmTool</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-<a href="/">Home</a>  |  <a href="/about">About Us</a> |
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    ...
-  </div>
-</nav>
-<%= yield %>
+	<head>
+	  <title>wxu PM tool</title>
+	  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+	  <%= csrf_meta_tags %>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<ul class="nav nav-pills">
+			  <li role="presentation" class="active"><%= link_to "Home", root_path %></li>
+			  <li role="presentation"><%= link_to "About", about_path %></li>
+			  <li role="presentation"><%= link_to "Tasks Index", tasks_path %></li>
+			</ul>
 
-</body>
+			<div class="btn-group" role="group">
+			  <%= link_to "Home", root_path, type: "button", class: "btn btn-default" %>
+			  <%= link_to "About", about_path, type: "button", class: "btn btn-default" %>
+			  <%= link_to "Index", root_path, type: "button", class: "btn btn-default" %>
+			</div>
+
+
+			<%= yield %>
+			
+		</div>
+	</body>
 </html>

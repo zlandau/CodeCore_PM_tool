@@ -1,0 +1,10 @@
+<h1>List all tasks </h1>
+<% if @entire_tasks.length == 0 %>
+	<em>No task found!</em>
+<% end %>
+
+<% @entire_tasks.each do |t| %>
+	<%= link_to t.title, t %>
+	<%= t.due_date %>
+	<hr>
+<% end %>

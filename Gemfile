@@ -32,8 +32,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'thin'  #this requires the web server to be Thin, only works for Thin though
-gem 'autoprefixer-rails'
-gem 'bootstrap-sass', '~> 3.3.1'
+#gem 'autoprefixer-rails'
+gem 'bootstrap-sass', '~> 3.3.1'  # for Bootstrap
+
 
 group :development do 
 	gem "colorize"
