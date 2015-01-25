@@ -1,0 +1,11 @@
+<h1>List all projects </h1>
+<% if @entire_projects.length == 0 %>
+	<em>No project found!</em>
+<% end %>
+
+<% @entire_projects.each do |p| %>
+	<%= link_to p.title, p %>
+	<%= p.description %>
+	<%= p.due_date %>
+	<hr>
+<% end %>
