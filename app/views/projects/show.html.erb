@@ -2,5 +2,7 @@
 <p><%= @project.description %></p>
 <p><%= @project.due_date %></p>
 
-<%= link_to "Edit project", edit_project_path(@project) %>
-<%= link_to "Delete project", project_path(@project), method: :delete, data: {confirm: "are you sure?"} %>
+<%= link_to "Edit project", edit_project_path(@project), class: :"btn btn-info" %>
+<%= link_to "Delete project", project_path(@project), class: "btn btn-warning", method: :delete, data: {confirm: "are you sure?"} %>
+<hr>
+

@@ -17,5 +17,9 @@
 		<%= f.date_field :due_date, class: "form-control" %>
 	</div>
 	<br>
+	<div class="form-group">
+		<%= f.label :status %>
+		<%= f.check_box :status, class: "form-control" %>
+	</div>
 	<%= f.submit class: "btn btn-primary" %>
 <% end %>
