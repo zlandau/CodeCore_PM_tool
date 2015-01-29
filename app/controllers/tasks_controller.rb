@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
 	before_action :find_task, only: [:show, :edit, :update, :destroy]
-
+	before_action :authenticate_user! 
+	
 	def index
 		@entire_tasks = Task.all.order('title ASC')
 	end

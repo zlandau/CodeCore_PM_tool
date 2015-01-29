@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :users   # added by gem 'devise'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -9,7 +11,7 @@ Rails.application.routes.draw do
     resources :discussions
   end
 
-  resources :discussions, only: [:create, :destroy] do
+  resources :discussions do
       resources :comments, only: [:create, :destroy]
       
   end

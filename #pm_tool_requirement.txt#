@@ -1,0 +1,11 @@
+Assignment: PM tool: Build your models Next Module
+
+Build four of your main models: project, task, discussion and comment (don't worry about associations yet, will add those later).
+
+Here are a summary of suggested fields and validations (feel free to add to those)
+
+Project: title(required & unique), description and due_date
+Task: title (required & unique within a project) and due_date
+Discussion: title(required), description
+Comment: body(required)
+

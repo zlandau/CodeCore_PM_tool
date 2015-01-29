@@ -1,5 +1,6 @@
 class ProjectsController < ApplicationController
 	before_action :find_project, only: [:show, :edit, :update, :destroy]
+	before_action :authenticate_user! 	
 
 	def index
 		@entire_projects = Project.all.order('title ASC')
