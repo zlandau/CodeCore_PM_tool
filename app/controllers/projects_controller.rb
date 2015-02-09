@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
 	before_action :authenticate_user! 	
 
 	def index
-		@page_count = (params[:pg].to_i-1) || 0
+		@page_count = params[:pg] ? (params[:pg].to_i-1) : 0
 		@total_count = Project.count
 
 		if params[:q] # if search string
