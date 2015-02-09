@@ -15,7 +15,7 @@ class TasksController < ApplicationController
 		if @task.save
 			redirect_to @task, notice: "Task created successfully."
 		else
-			render :new  #layout:  new_task
+			render :new, alert: "Task failed upon creation"  #layout:  new_task
 		end
 	end
 
@@ -32,7 +32,7 @@ class TasksController < ApplicationController
 		if @task.update task_params
 			redirect_to @task, notice: "Task updated successfully"
 		else
-			render :edit
+			render :edit, alert: "Task failed to update"
 		end
 	end
 
@@ -41,6 +41,7 @@ class TasksController < ApplicationController
 		@task.destroy
 			redirect_to tasks_path, notice: "Task deleted successfully."
 	end
+
 
 	private
 

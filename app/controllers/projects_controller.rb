@@ -3,7 +3,12 @@ class ProjectsController < ApplicationController
 	before_action :authenticate_user! 	
 
 	def index
-		@entire_projects = Project.all.order('title ASC')
+		if params[:q] # if search string
+			@entire_projects = Project.where("title LIKE ? OR description LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
+#			raise params.inspect
+		else
+			@entire_projects = Project.all.order('title ASC')
+		end
 	end
 
 	def new
@@ -15,7 +20,7 @@ class ProjectsController < ApplicationController
 		if @project.save
 			redirect_to project_path(@project), notice: "Project created successfully"
 		else
-			render :new
+			render :new, alert: "Project failed upon creation."
 		end
 	end
 
@@ -28,12 +33,13 @@ class ProjectsController < ApplicationController
 		if @project.update project_params
 			redirect_to project_path(@project), notice: "Project updated successfully"
 		else
-			render :edit
+			render :edit, alert: "Project failed to update."
 		end
 	end
 
 	def show
 		#find_project
+		@discussion = Discussion.new
 	end
 
 	def destroy
@@ -41,6 +47,7 @@ class ProjectsController < ApplicationController
 		@project.destroy
 		redirect_to projects_path, notice: "Project deleted successfully"
 	end
+
 
 	private
 

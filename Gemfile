@@ -31,6 +31,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+
 gem 'thin'  #this requires the web server to be Thin, only works for Thin though
 #gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3.1'  # for Bootstrap
@@ -38,9 +40,11 @@ gem 'rails_12factor' # for bootstrap to work while pushed to Heroku
 #gem 'autoprefixer'  # used for SASS for bootstrap
 gem 'devise'         # authentication module
 
-gem 'haml-rails'
-gem 'slim-rails'
+#gem 'haml-rails'
+#gem 'slim-rails'
+#gem 'premailer' #inline styling for Emails
 
+gem 'simple_form'  #for simple_form usage
 
 group :development do 
 	gem "colorize"
@@ -50,7 +54,7 @@ group :development do
 end
 
 group :development, :test do
-  #  gem "pry-rails"
+#  gem "pry-rails"
 #  gem "pry-byebug"
   gem "quiet_assets"  #rails log does not show the assets (js, css) related entries
   gem 'faker'  #CodeCore added for homework purposes, generates a bunch of Fake information/data
@@ -63,4 +67,3 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-

@@ -1,8 +1,19 @@
 <h1><%= @project.title %></h1>
-<p><%= @project.description %></p>
-<p><%= @project.due_date %></p>
+<p><%= @project.description %><br>
+   <%= @project.due_date %></p>
 
 <%= link_to "Edit project", edit_project_path(@project), class: :"btn btn-info" %>
 <%= link_to "Delete project", project_path(@project), class: "btn btn-warning", method: :delete, data: {confirm: "are you sure?"} %>
-<hr>
 
+
+<hr><h2>Create a Discussion</h2>
+  <%= render "/discussions/form" %>  
+
+
+<h2>Discussions</h2>  <!-- print all discussions -->
+  <% @project.discussions.each do |dis| %>
+    <%= dis.title %>
+    <%= dis.body %>
+ 
+    <%= link_to "Delete discussion", project_discussion_path(@project.id, dis.id), method: "delete", data: {confirm: "delete this discussion?"}, class: "btn btn-sm btn-danger", remote: true  %>
+   <% end %>
