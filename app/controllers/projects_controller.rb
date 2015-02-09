@@ -3,11 +3,15 @@ class ProjectsController < ApplicationController
 	before_action :authenticate_user! 	
 
 	def index
+		@page_count = (params[:pg].to_i-1) || 0
+		@total_count = Project.count
+
 		if params[:q] # if search string
 			@entire_projects = Project.where("title LIKE ? OR description LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
 #			raise params.inspect
 		else
-			@entire_projects = Project.all.order('title ASC')
+#			@entire_projects = Project.all.order('title ASC')
+			@entire_projects = Project.limit(5).offset(@page_count*5)
 		end
 	end
 
@@ -56,7 +60,7 @@ class ProjectsController < ApplicationController
 	end
 
 	def project_params
-		params.require(:project).permit(:title, :description, :due_date)
+		params.require(:project).permit(:title, :description, :due_date, :pg)
 	end
 
 end

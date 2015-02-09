@@ -9,10 +9,11 @@
   </div>
 <% end %>
 
-
-<% if @entire_projects.length == 0 %>
+<!--
+<%# if @entire_projects.length == 0 %>
 	<em>No project found!</em>
-<% else %>
+<% #else %>
+-->
   <ul>
     <% @entire_projects.each do |p| %>
       <li>
@@ -22,4 +23,13 @@
       </li>
     <% end %>
   </ul>
+
+
+<hr>Total count = <%= @total_count %>
+page: <% for i in 0..(@total_count / 5) do %>
+  <% if @page_count == i %>
+    <%= i+1 %>
+  <% else %>
+    <%= link_to "#{i+1}", projects_path(:pg => i+1) %>
+  <% end %>
 <% end %>
