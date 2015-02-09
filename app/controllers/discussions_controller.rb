@@ -34,6 +34,6 @@ class DiscussionsController < ApplicationController
 		@discussion = Discussion.find(params[:id])
 	end
 	def discussion_params
-		params.require(:discussion).permit(:title, :body)
+		params.require(:discussion).permit(:title, :description)
 	end
 end

@@ -7,15 +7,13 @@
 
 
 <hr><h2>Create a Discussion</h2>
+<div class="discussion-form">
   <%= render "/discussions/form" %>  
-
+</div>
 
 <h2>Discussions</h2>  <!-- print all discussions -->
 <div class="discussions">
   <% @project.discussions.each do |dis| %>
-    <%= dis.title %>
-    <%= dis.description %>
- 
-    <%= link_to "Delete discussion", project_discussion_path(@project.id, dis.id), method: "delete", data: {confirm: "delete this discussion?"}, class: "btn btn-sm btn-danger", remote: true  %>
+    <%= render partial: "/discussions/discussion", locals: { discussion: dis } %>
   <% end %>
 </div>
