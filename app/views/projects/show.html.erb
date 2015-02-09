@@ -14,7 +14,7 @@
 <div class="discussions">
   <% @project.discussions.each do |dis| %>
     <%= dis.title %>
-    <%= dis.body %>
+    <%= dis.description %>
  
     <%= link_to "Delete discussion", project_discussion_path(@project.id, dis.id), method: "delete", data: {confirm: "delete this discussion?"}, class: "btn btn-sm btn-danger", remote: true  %>
   <% end %>

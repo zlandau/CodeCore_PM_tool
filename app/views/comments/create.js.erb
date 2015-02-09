@@ -1,0 +1,9 @@
+<% if @comment.errors.any? %>
+  $('#<%= dom_id(@discussion) %> .comment-form').html("<%= j render partial: "/comments/form", locals: { discussion: @discussion } %>");   //need both discussion and comment var in _form.html.erb
+<% else %>
+  //JS selector is #discussion_id then .comments to ensure unique preprend
+  $('#<%= dom_id(@discussion) %> .comments').prepend("<%= j render partial: '/comments/comment', locals: { discussion: @discussion, comment: @comment } %>");  //'j' escapes javascript \", \n, and all special chars
+
+  <% @comment = Comment.new %>
+  $('#<%= dom_id(@discussion) %> .comment-form').html("<%= j render partial: "/comments/form", locals: { discussion: @discussion } %>"); 
+<% end %>

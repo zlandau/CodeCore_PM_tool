@@ -1,30 +1,35 @@
 class DiscussionsController < ApplicationController
-	before_action :find_discussion, only: [:update, :destroy]
+	before_action :find_project
+	before_action :find_discussion, only: [ :destroy]
 	before_action :authenticate_user! 
 
 	def create
 		@discussion = Discussion.new discussion_params
-		if @discussion.save
-			redirect_to project_discussions_path, notice: "Discussion created successfully"
-		else
-			redirect_to project_discussions_path, alert: "err: Discussion did not save!"
+		@discussion.project = @project
+		respond_to do |format|
+			if @discussion.save
+				format.html { redirect_to @project, notice: "Discussion created successfully."}
+				format.js { render } #render /discussions/create.js.erb success case
+			else
+				format.html { redirect_to project_path(@project), alert: "err: Discussion did not save!" }
+				format.js { render }
+			end
 		end
-	end
-
-	def update
-		if @discussion.update discussion_params
-			redirect_to project_discussions_path, notice: "Discussion updated successfully"
-		else
-			redirect_to project_discussions_path, alert: "err: Discussion did not update!"
 	end
 
 	def destroy
 		@discussion.destroy
-		redirect_to project_discussions_path, notice: "Discussion deleted successfully"
+		respond_to do | format |
+			format.html { redirect_to project_path(@project), notice: "Discussion deleted successfully" }
+			format.js { render }  #this is to render "/discussion/destroy.js.erb"
+		end
 	end
 
 
 	private
+	def find_project
+		@project = Project.find params[:project_id]
+	end
 	def find_discussion
 		@discussion = Discussion.find(params[:id])
 	end

@@ -1,0 +1,7 @@
+<% if @discussion.errors.any? %>
+  $(".discussion-form").html("<%= j render "/discussions/form" %>"); 
+<% else %>
+ $('.discussions').prepend("<%= j render partial: '/discussions/discussion', locals: { discussion: @discussion } %>");  //'j' escapes javascript \", \n, and all special chars
+  <% @discussion = Discussion.new %>
+  $(".discussion-form").html("<%= j render "/discussions/form" %>"); 
+<% end %>

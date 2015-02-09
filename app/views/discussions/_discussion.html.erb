@@ -1,0 +1,19 @@
+<div id="<%= dom_id(discussion) %>">
+  <%= discussion.body %> 
+  <p>discussion by: <%= discussion.user_first_name %></p>
+  <%= link_to "Delete", question_discussion_path(@question.id, discussion.id), method: "delete", data: {confirm: "delete this discussion for real?"}, class: "btn btn-sm btn-danger", remote: true  %>
+  <!-- remote: true -- means rails send form via JS instead of default HTML -->
+
+  <%#= button_to "Delete", question_discussion_path(@question.id, discussion.id), method: :delete, data: {confirm: "delete this discussion for real?"}, class: "btn btn-sm btn-danger" %>
+
+  <div class="comment-form">
+    <%= render partial: "/comments/form", locals: { discussion: discussion } %>  <!-- refactor comment form into comment's view folder partial form -->
+  </div>
+
+  <hr>
+  <div class="comments">
+    <% discussion.comments.each do |comt| %>   <!-- refactor code to _comment.html.erb -->
+      <%= render partial: "/comments/comment", locals: { comment: comt, discussion: discussion } %>
+    <% end %>
+  </div>
+</div>

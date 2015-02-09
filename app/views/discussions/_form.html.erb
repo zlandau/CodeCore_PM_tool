@@ -1,8 +1,9 @@
-<%= simple_form_for [@project, @discussion], html: { class: 'form-horizontal' }, 
-    remote:true do |f| %>  
+<%= simple_form_for [@project, @discussion], 
+                    html: { class: 'form-horizontal' },
+                    remote: true   do |f| %>  
 <!-- remote:true is so the form_for is sent as JS -->
-<!-- form_for submit to POST /question/:id/answer  by convention -->
+<!-- form_for submit to POST /project/:id/discussion  by convention -->
   <%= f.input :title %>
   <%= f.input :description %>
   <%= f.submit class: "btn btn-primary" %> 
-<% end %>
+<% end %> 
