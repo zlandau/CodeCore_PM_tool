@@ -3,11 +3,11 @@ class ProjectsController < ApplicationController
 	before_action :authenticate_user! 	
 
 	def index
-		@page_count = params[:pg] ? (params[:pg].to_i-1) : 0
+		@page_count = params[:pg] ? (params[:pg].to_i-1) : 0 #very confusing 0 based DB records but 1 based page count!!!
 		@total_count = Project.count
 
 		if params[:q] # if search string
-			@entire_projects = Project.where("title LIKE ? OR description LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
+			@entire_projects = Project.where("title ILIKE ? OR description ILIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
 #			raise params.inspect
 		else
 #			@entire_projects = Project.all.order('title ASC')
