@@ -2,6 +2,7 @@
   <h3><%= discussion.title %></h3>
   <p><%= discussion.description %></p>
   <p>discussion by: <%#= discussion.user.first_name %></p>
+  <%= link_to "Update D", project_discussion_path(@project.id, discussion.id), method: "patch", class: "btn btn-sm btn-info", remote: true %>
   <%= link_to "Delete D", project_discussion_path(@project.id, discussion.id), method: "delete", data: {confirm: "delete this discussion?"}, class: "btn btn-sm btn-danger", remote: true  %>
   <!-- remote: true -- means rails send form via JS instead of default HTML -->
 

@@ -1,6 +1,6 @@
 class DiscussionsController < ApplicationController
 	before_action :find_project
-	before_action :find_discussion, only: [ :destroy]
+	before_action :find_discussion, only: [:update, :destroy]
 	before_action :authenticate_user! 
 
 	def create
@@ -13,6 +13,18 @@ class DiscussionsController < ApplicationController
 			else
 				format.html { redirect_to project_path(@project), alert: "err: Discussion did not save!" }
 				format.js { render }
+			end
+		end
+	end
+
+	def update
+		respond_to do | format |
+			if @discussion.update discussion_params
+				format.html { redirect_to project_path(@project), notice: "Discussion updated successfully."}
+				format.js { render "/discussions/create.js.erb"}
+			else
+				format.hml { redirect_to project_path(@project), notice: "Discussion failed to update"}
+				format.js { render "/discussions/create.js.erb"}
 			end
 		end
 	end
