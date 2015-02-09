@@ -3,7 +3,7 @@
                     remote: true   do |f| %>  
 <!-- remote:true is so the form_for is sent as JS -->
 <!-- form_for submit to POST /project/:id/discussion  by convention -->
-  <%= f.input :title %>
+  <%= f.input :title, label: "Discussion title" %>
   <%= f.input :description %>
   <%= f.submit class: "btn btn-primary" %> 
 <% end %> 

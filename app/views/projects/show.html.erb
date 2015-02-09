@@ -6,12 +6,12 @@
 <%= link_to "Delete project", project_path(@project), class: "btn btn-warning", method: :delete, data: {confirm: "are you sure?"} %>
 
 
-<hr><h2>Create a Discussion</h2>
+<hr><h2>Create a Discussion:</h2>
 <div class="discussion-form">
   <%= render "/discussions/form" %>  
 </div>
 
-<h2>Discussions</h2>  <!-- print all discussions -->
+<h2>Discussions:</h2>  <!-- print all discussions -->
 <div class="discussions">
   <% @project.discussions.each do |dis| %>
     <%= render partial: "/discussions/discussion", locals: { discussion: dis } %>
