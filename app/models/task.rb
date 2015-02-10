@@ -4,4 +4,5 @@ class Task < ActiveRecord::Base
 	validates :body, presence: true
 	
 #	validates_uniqueness_of :title, scope: [:project_id]
+
 end

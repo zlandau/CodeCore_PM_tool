@@ -6,5 +6,10 @@ class Project < ActiveRecord::Base
 	
 	validates :title, presence: true, uniqueness: true
 
-
+  def done_tasks
+    self.tasks.where('status = true')
+  end
+  def not_done_tasks
+    self.tasks.where('status = false')
+  end
 end
