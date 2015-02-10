@@ -1,10 +1,12 @@
 <div class="well" id="<%= dom_id(task) %>">
-  <%= task.title %> ||
-  <%= task.body %>  ||
+<%= form_for task, url: project_task_path(@project, task)  do |f| %>
+  <%= f.text_field :title, :value => task.title %>
+  <%= f.text_area :body, :value => task.body %>
+  <%= f.date_field :due_date, :value => task.due_date %>
   <%#= stdDate(task.created_at) %>  <!-- stdDate is defined in application_helper.rb -->
-  Task by: <%#= task.user.first_name %>
-  <%#= " | task by: #{task.user_first_name}  " %>
-  <%= link_to "Update task", 
+
+  <%= f.submit "Update Task", class: "btn btn-sm btn-primary" %>
+  <%#= link_to "Update task", 
               project_task_path(@project, task), 
               method: :patch, 
               class: "btn btn-sm btn-info" %>
@@ -19,4 +21,8 @@
               project_task_path(@project, task), 
               method: :patch, 
               class: "btn btn-sm btn-primary" %>
+
+  Task by: <%#= task.user.first_name %>
+  <%#= " | task by: #{task.user_first_name}  " %>
+  <% end %>
 </div>
