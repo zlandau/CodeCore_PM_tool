@@ -6,10 +6,15 @@
 	</ul>
 <% end %>
 
-<%= form_for @task do |f| %>
+<%= form_for @task, url: project_tasks_path(@project)  do |f| %>
 	<div class="form-group">
 		<%= f.label :title %>
 		<%= f.text_field :title, class: "form-control" %>
+	</div>
+	<br>
+	<div class="form-group">
+		<%= f.label :body %>
+		<%= f.text_area :body, class: "form-control" %>
 	</div>
 	<br>
 	<div class="form-group">

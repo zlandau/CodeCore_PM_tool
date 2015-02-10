@@ -1,0 +1,9 @@
+<div class="well" id="<%= dom_id(task) %>">
+  <%= task.title %> ||
+  <%= task.body %>  ||
+  <%= stdDate(task.created_at) %>  ||<!-- stdDate is defined in application_helper.rb -->
+  Task by: <%#= task.user.first_name %>
+  <%#= " | task by: #{task.user_first_name}  " %> ||
+  
+  <%= link_to "Delete task", project_task_path(@project, task), method: :delete, data: {confirm: "delete this task for real?"}, class: "btn btn-sm btn-danger", remote: true %>  <!-- turn on link_to AJAX instead of HTML -->
+</div>

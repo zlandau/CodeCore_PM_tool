@@ -1,9 +1,21 @@
 <h1><%= @project.title %></h1>
 <p><%= @project.description %><br>
    <%= @project.due_date %></p>
-
 <%= link_to "Edit project", edit_project_path(@project), class: :"btn btn-info" %>
 <%= link_to "Delete project", project_path(@project), class: "btn btn-warning", method: :delete, data: {confirm: "are you sure?"} %>
+
+
+<hr><h2>Create task associated with this project:</h2>
+<div class="task-form">
+  <%= render "/tasks/task_form" %>
+</div>
+
+<h2>Tasks list:</h2>
+<div class="tasks">
+  <% @project.tasks.each do |t| %>
+    <%= render partial: "/tasks/task", locals: { task: t } %>
+  <% end %>
+</div>
 
 
 <hr><h2>Create a Discussion:</h2>

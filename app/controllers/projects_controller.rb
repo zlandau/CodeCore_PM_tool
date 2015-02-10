@@ -43,7 +43,8 @@ class ProjectsController < ApplicationController
 
 	def show
 		#find_project
-		@discussion = Discussion.new
+		@discussion = Discussion.new #for show controller's Discussion section
+		@task = Task.new # for show controller's Task section
 	end
 
 	def destroy
