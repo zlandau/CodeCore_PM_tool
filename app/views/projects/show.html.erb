@@ -1,27 +1,25 @@
 <h1><%= @project.title %></h1>
-<p><%= @project.description %><br>
-   <%= @project.due_date %></p>
-<%= link_to "Edit project", edit_project_path(@project), class: :"btn btn-info" %>
-<%= link_to "Delete project", project_path(@project), class: "btn btn-warning", method: :delete, data: {confirm: "are you sure?"} %>
+<p>Description: <%= @project.description %><br>
+   Due date: <%= @project.due_date %></p>
+<%= link_to "Edit project", edit_project_path(@project), class: "btn btn-lg btn-info" %>
+<%= link_to "Delete project", project_path(@project), class: "btn btn-lg btn-danger", method: :delete, data: {confirm: "are you sure?"} %>
+<%= link_to "Create New Task", new_project_task_path(@project), class: "btn btn-lg btn-primary", method: :get %>
 
 
-<hr><h2>Create task associated with this project:</h2>
-<div class="task-form">
-  <%= render "/tasks/form" %>
-</div>
-
-<h2>Tasks list:</h2>
-<h3>Unfinished task list:</h3>
-<div class="tasks">
-  <% @project.not_done_tasks.each do |t| %>
-    <%= render partial: "/tasks/task", locals: { task: t } %>
-  <% end %>
-</div>
-<h3>Done task list:</h3>
-<div class="tasks">
-  <% @project.done_tasks.each do |t| %>
-    <%= render partial: "/tasks/task", locals: { task: t } %>
-  <% end %>
+<h2>Tasks list table:</h2>
+<div class="row well">
+  <div class="col-md-6 tasks">
+    <h3>Unfinished tasks:</h3>
+    <% @project.not_done_tasks.each do |t| %>
+      <%= render partial: "/tasks/task", locals: { task: t } %>
+    <% end %>
+  </div>
+  <div class="col-md-6 tasks">
+    <h3>Done tasks:</h3>
+    <% @project.done_tasks.each do |t| %>
+      <%= render partial: "/tasks/task", locals: { task: t } %>
+    <% end %>
+  </div>
 </div>
 
 
@@ -36,3 +34,6 @@
     <%= render partial: "/discussions/discussion", locals: { discussion: dis } %>
   <% end %>
 </div>
+
+
+<!-- btn, btn-sm, btn-md, btn-lg, btn-primary, btn-info, btn-warning, btn-danger -->
