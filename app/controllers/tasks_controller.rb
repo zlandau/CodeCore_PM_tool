@@ -1,9 +1,14 @@
 class TasksController < ApplicationController
 	before_action :find_project
-	before_action :find_task, only: [:update, :destroy]
+	before_action :find_task, only: [:edit, :show, :update, :destroy]
 	before_action :authenticate_user! 
 
+	def new
+		#find_project
+		@task = Task.new
+	end
 	def create
+		#find_project
 		@task = Task.new task_params
 		@task.project = @project
 		respond_to do |format|
@@ -16,8 +21,12 @@ class TasksController < ApplicationController
 			end
 		end
 	end
-
+	def edit
+		#find_project
+		#find_task
+	end
 	def update
+		#find_project
 		#find_task
 		respond_to do |format|
 			if @task.update task_params
@@ -29,8 +38,16 @@ class TasksController < ApplicationController
 			end
 		end
 	end
-
+	def show
+		#find_project
+		#find_task
+	end
+	def index
+		#find_project
+		@entire_tasks = Task.all
+	end
 	def destroy
+		#find_project
 		#find_task
 		@task.destroy
 		respond_to do |format|

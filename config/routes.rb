@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users   # added by gem 'devise'
+  devise_for :users, :controllers => { :registrations => "registrations" }   # added by gem 'devise', use custom registration controller
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   resources :projects do
-    resources :tasks, only: [:create, :update, :destroy]
+    resources :tasks
     resources :discussions, only: [:create, :update, :destroy]
   end
 
