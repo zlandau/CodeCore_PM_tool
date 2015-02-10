@@ -8,7 +8,7 @@ class DiscussionsController < ApplicationController
 		@discussion.project = @project
 		respond_to do |format|
 			if @discussion.save
-				format.html { redirect_to @project, notice: "Discussion created successfully."}
+				format.html { redirect_to project_path(@project), notice: "Discussion created successfully."}
 				format.js { render } #render /discussions/create.js.erb success case
 			else
 				format.html { redirect_to project_path(@project), alert: "err: Discussion did not save!" }
@@ -33,7 +33,7 @@ class DiscussionsController < ApplicationController
 		@discussion.destroy
 		respond_to do | format |
 			format.html { redirect_to project_path(@project), notice: "Discussion deleted successfully" }
-			format.js { render }  #this is to render "/discussion/destroy.js.erb"
+			format.js { render }  #render "/discussion/destroy.js.erb"
 		end
 	end
 

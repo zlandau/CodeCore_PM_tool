@@ -1,0 +1,7 @@
+<% if @task.errors.any? %>
+  $(".task-form").html("<%= j render "/tasks/form" %>"); 
+<% else %>
+ $('.tasks').append("<%= j render partial: '/tasks/task', locals: { task: @task } %>");  //'j' escapes javascript \", \n, and all special chars
+  <% @task = task.new %>
+  $(".task-form").html("<%= j render "/discussions/form" %>"); 
+<% end %>

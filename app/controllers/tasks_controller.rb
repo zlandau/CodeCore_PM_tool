@@ -1,47 +1,42 @@
 class TasksController < ApplicationController
 	before_action :find_project
-	before_action :find_task, only: [:show, :edit, :update, :destroy]
+	before_action :find_task, only: [:update, :destroy]
 	before_action :authenticate_user! 
-	
-	def index
-		@entire_tasks = Task.all.order('title ASC')
-	end
-
-	def new
-		@task = Task.new
-	end
 
 	def create
 		@task = Task.new task_params
 		@task.project = @project
-		if @task.save
-			redirect_to @project,  notice: "Task created successfully."
-		else
-			render :new, alert: "Task failed upon creation"  #layout:  new_task
+		respond_to do |format|
+			if @task.save
+				format.js { render } #render "/tasks/create.js.erb"
+				format.html { redirect_to project_path(@project),  notice: "Task created successfully." }
+			else
+				format.js { render } #render "/tasks/create.js.erb"
+				format.html { redirect_to project_path(@project), alert: "Task failed upon creation" } #layout:  new_task
+			end
 		end
-	end
-
-	def show
-		#find_task
-	end
-
-	def edit
-		#find_task
 	end
 
 	def update
 		#find_task
-		if @task.update task_params
-			redirect_to @task, notice: "Task updated successfully"
-		else
-			render :edit, alert: "Task failed to update"
+		respond_to do |format|
+			if @task.update task_params
+				format.js { render } #render "/tasks/update.js.erb"
+				format.html { redirect_to project_path(@project), notice: "Task updated successfully" }
+			else
+				format.js { render } #render "/tasks/update.js.erb"
+				format.html { render :edit, alert: "Task failed to update" }
+			end
 		end
 	end
 
 	def destroy
 		#find_task
 		@task.destroy
-			redirect_to project_tasks_path(@project), notice: "Task deleted successfully."
+		respond_to do |format|
+			format.js { render } #render "/tasks/destroy.js.erb"
+			format.html { redirect_to projects_path(@project), notice: "Task deleted successfully." } 
+		end
 	end
 
 
@@ -54,6 +49,6 @@ class TasksController < ApplicationController
 	end
 	def task_params
 		#strong params check
-		params.require(:task).permit(:title, :due_date, :body, :project_id)
+		params.require(:task).permit(:title, :due_date, :body, :status, :project_id)
 	end
 end

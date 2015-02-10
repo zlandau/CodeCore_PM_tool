@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   resources :projects do
-    resources :tasks
+    resources :tasks, only: [:create, :update, :destroy]
     resources :discussions, only: [:create, :update, :destroy]
   end
 
