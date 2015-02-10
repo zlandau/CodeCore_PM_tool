@@ -1,4 +1,4 @@
-<div class="well" id="<%= dom_id(task) %>">
+<div id="<%= dom_id(task) %>" class="well" >
   <%= form_for task, url: project_task_path(@project, task)  do |f| %>
     <%= f.text_field :title, :value => task.title %>
     <%= f.text_area :body, :value => task.body %>

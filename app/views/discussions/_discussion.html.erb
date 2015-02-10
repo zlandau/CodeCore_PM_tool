@@ -1,12 +1,18 @@
-<div id="<%= dom_id(discussion) %>">
-  <h3><%= discussion.title %></h3>
-  <p><%= discussion.description %></p>
-  <p>discussion by: <%#= discussion.user.first_name %></p>
-  <%= link_to "Update D", project_discussion_path(@project.id, discussion.id), method: "patch", class: "btn btn-sm btn-info", remote: true %>
-  <%= link_to "Delete D", project_discussion_path(@project.id, discussion.id), method: "delete", data: {confirm: "delete this discussion?"}, class: "btn btn-sm btn-danger", remote: true  %>
+<div id="<%= dom_id(discussion) %>" class="well inline-block">
+  <%= form_for discussion, url: project_discussion_path(@project, discussion) do |f| %>
+    <%= f.text_field :title, :value => discussion.title %>
+    <%= f.text_area :description, :value => discussion.description %>
+
+    <%= f.submit "Update Disc", class: "btn btn-sm btn-primary" %>
+  <% end %>
+
+  <%#= link_to "Update D", project_discussion_path(@project.id, discussion.id), method: "patch", class: "btn btn-sm btn-info", remote: true %>
+  <%= link_to "Delete Disc", project_discussion_path(@project.id, discussion.id), method: "delete", data: {confirm: "delete this discussion?"}, class: "btn btn-sm btn-danger", remote: true  %>
   <!-- remote: true -- means rails send form via JS instead of default HTML -->
 
   <%#= button_to "Delete", project_discussion_path(@project.id, discussion.id), method: :delete, data: {confirm: "delete this discussion for real?"}, class: "btn btn-sm btn-danger" %>
+
+  <p>Discussion by: <%#= discussion.user.first_name %></p>
 
   <div class="comment-form">
     <%= render partial: "/comments/form", locals: { discussion: discussion } %>  <!-- refactor comment form into comment's view folder partial form -->
