@@ -8,7 +8,8 @@ class CommentsController < ApplicationController
 		@comment.discussion = @discussion
 
 		if @comment.save
-      DiscussionMailer.notify_discussion_owner(@comment).deliver
+			# delayed email job
+      DiscussionMailer.notify_discussion_owner(@comment).deliver_later
 
 			redirect_to project_path(@discussion.project), notice: "Comment created successfully"
 		else

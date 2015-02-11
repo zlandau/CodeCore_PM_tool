@@ -12,8 +12,10 @@ class TasksController < ApplicationController
 		@task = Task.new task_params
 		@task.project = @project
 		respond_to do |format|
+			
 			if @task.save
-				TaskMailer.notify_task_owner(@task).deliver
+				TaskMailer.notify_task_owner(@task).deliver_later
+
 				format.js { render } #render "/tasks/create.js.erb"
 				format.html { redirect_to project_path(@project),  notice: "Task created successfully." }
 			else
