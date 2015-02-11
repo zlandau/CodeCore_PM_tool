@@ -8,6 +8,8 @@ class CommentsController < ApplicationController
 		@comment.discussion = @discussion
 
 		if @comment.save
+      DiscussionMailer.notify_discussion_owner(@comment).deliver
+
 			redirect_to project_path(@discussion.project), notice: "Comment created successfully"
 		else
 			redirect_to project_path(@discussion.project), alert: "err: Comment didn't save!"

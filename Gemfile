@@ -51,6 +51,8 @@ group :development do
 	gem "interactive_editor"
 	gem "hirb"
 	gem "awesome_print"
+
+  gem "letter_opener" #to do with email client/mailer(?)
 end
 
 group :development, :test do

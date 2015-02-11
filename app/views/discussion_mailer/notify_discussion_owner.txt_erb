@@ -1,0 +1,11 @@
+Hello <%= @user.full_name %>
+
+You've got a comment for your discussion: 
+
+For project: <%= @project.title %>, discussion: <%= @discussion.title %>
+
+Comment: <%= @comment.body %>
+
+Regards,
+
+Pm tool web team
