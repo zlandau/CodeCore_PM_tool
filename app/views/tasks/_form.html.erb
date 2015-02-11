@@ -6,7 +6,7 @@
 	</ul>
 <% end %>
 
-<%= form_for @task, url: project_task_path(@project, @task),
+<%= form_for @task, url: project_tasks_path(@project),
 						html: { class: "form_horizontal short_form" }  do |f| %>
 	<div class="form-group">
 		<%= f.label :title %>
