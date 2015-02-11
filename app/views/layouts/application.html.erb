@@ -10,25 +10,27 @@
 	<body>
 		<div class="container">
 			<div class="row">
-			<div class="col-md-9">
-				<ul class="nav nav-pills">
-				  <li role="presentation" class="active"><%= link_to "Home", root_path %></li>
-				  <li role="presentation"><%= link_to "About", about_path %></li>
-				  <li role="presentation"><%= link_to "New Project", new_project_path %></li>
-				  <li role="presentation"><%= link_to "Projects Index", projects_path %></li>
-				</ul>
-			</div>
+				<div class="col-md-9">
+					<ul class="nav nav-pills">
+					  <li role="presentation" class="active"><%= link_to "Home", root_path %></li>
+					  <li role="presentation"><%= link_to "About", about_path %></li>
+					  <li role="presentation"><%= link_to "New Project", new_project_path %></li>
+					  <li role="presentation"><%= link_to "Projects Index", projects_path %></li>
+					</ul>
+				</div>
 
-			<!-- gem 'devise' sign-out button, only show OUT if user is signed IN first-->
-			<div class="col-md-3">
-				<% if user_signed_in? %>
-					Hello <%= current_user.first_name %>,
-					<%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-				<% else %>
-					<%= link_to "Sign In", new_user_session_path, method: :get %>
-				<% end %>
-			</div>
-			</div>
+				<!-- gem 'devise' sign-out button, only show OUT if user is signed IN first-->
+				<div class="col-md-3 user-login-status">
+					<% if user_signed_in? %>
+						Hello <%= current_user.first_name %>,
+						<%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+					<% else %>
+						<%= link_to "Sign In", new_user_session_path, method: :get %>
+					<% end %>
+				</div>
+			</div>		
+
+
 			<% flash.each do |name, msg| %>
 				<% if name=="notice" %>
 					<%= content_tag :div, msg, class: "alert alert-info", role: "alert" %>

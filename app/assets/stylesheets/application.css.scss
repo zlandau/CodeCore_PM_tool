@@ -15,3 +15,15 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.user-login-status {
+  line-height: 40px; // line-height is taken from the div row vertical size
+}
+
+.page_top {
+  margin-top: 40px;  // default margin-top: 20px;
+}
+
+.short_form {
+  width: 80%;
+}

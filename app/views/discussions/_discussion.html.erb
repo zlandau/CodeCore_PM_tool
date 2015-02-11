@@ -7,22 +7,27 @@
   <% end %>
 
   <%#= link_to "Update D", project_discussion_path(@project.id, discussion.id), method: "patch", class: "btn btn-sm btn-info", remote: true %>
-  <%= link_to "Delete Disc", project_discussion_path(@project.id, discussion.id), method: "delete", data: {confirm: "delete this discussion?"}, class: "btn btn-sm btn-danger", remote: true  %>
+  <%= link_to "Delete Disc", project_discussion_path(@project.id, discussion.id), 
+                              method: "delete", data: {confirm: "delete this discussion?"}, 
+                              html: { style: "display: inline-block"}, class: "btn btn-sm btn-danger", remote: true  %>
   <!-- remote: true -- means rails send form via JS instead of default HTML -->
 
   <%#= button_to "Delete", project_discussion_path(@project.id, discussion.id), method: :delete, data: {confirm: "delete this discussion for real?"}, class: "btn btn-sm btn-danger" %>
 
   <p>Discussion by: <%#= discussion.user.first_name %></p>
 
+  <%= link_to "Add new comment", discussion_comments_path(discussion), method: :post, class: "btn btn-sm btn-primary" %>
   <div class="comment-form">
     <%= render partial: "/comments/form", locals: { discussion: discussion } %>  <!-- refactor comment form into comment's view folder partial form -->
   </div>
 
   <hr>
   <div class="comments">
-    <% discussion.comments.each do |comt| %>   <!-- refactor code to _comment.html.erb -->
-      <%= render partial: "/comments/comment", locals: { comment: comt, discussion: discussion } %>
-    <% end %>
+    <ul>
+      <% discussion.comments.each do |comt| %>   <!-- refactor code to _comment.html.erb -->
+        <%= render partial: "/comments/comment", locals: { comment: comt, discussion: discussion } %>
+      <% end %>
+    </ul>
   </div>
 
 </div>

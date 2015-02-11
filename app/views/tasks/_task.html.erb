@@ -1,25 +1,27 @@
 <div id="<%= dom_id(task) %>">
-    <%= task.title %>
+  <li>
+    <strong><%= task.title %></strong>
     <%= task.body %>
     <%= task.due_date %>
     <%#= stdDate(task.created_at) %>  <!-- stdDate is defined in application_helper.rb -->
  
-  <%= link_to "Update task", edit_project_task_path(@project, task), method: :patch, class: "btn btn-sm btn-info", remote: true %>
-  <%= link_to "Delete task", 
-              project_task_path(@project, task), 
-              method: :delete, 
-              data: {confirm: "delete this task for real?"}, 
-              class: "btn btn-sm btn-danger", 
-              remote: true %>  <!-- turn link_to AJAX instead of HTML -->
-  <%#= link_to task_status, project_task_path(@project, task), method: :patch,  class: "btn btn-sm btn-primary", remote: true %>
 
-  <%= form_for task, url: project_task_path(@project, task), html: { :display => "inline" } do |f| %>
-    <% task_status = task.status ? "Done": "Not Done" %>
-    <%= f.hidden_field :status, :value => (!task.status) %>    
-    <%= f.submit task_status, class: "btn btn-sm btn-primary" %>
-  <% end %>
+    <%= link_to "Update task", edit_project_task_path(@project, task), method: :get, class: "btn btn-sm btn-info"%>
+    <%= link_to "Delete task", 
+                project_task_path(@project, task), 
+                method: :delete, 
+                data: {confirm: "delete this task for real?"}, 
+                class: "btn btn-sm btn-danger", 
+                remote: true %>  <!-- turn link_to AJAX instead of HTML -->
+    <%#= link_to task_status, project_task_path(@project, task), method: :patch,  class: "btn btn-sm btn-primary", remote: true %>
 
-  Task by: <%#= task.user.first_name %>
-  <%#= " | task by: #{task.user_first_name}  " %>
+    <%= form_for task, url: project_task_path(@project, task), html: { style: "display: inline-block" } do |f| %>
+      <% task_status = task.status ? "Done": "Not Done" %>
+      <%= f.hidden_field :status, :value => (!task.status) %>    
+      <%= f.submit task_status, class: "btn btn-sm btn-primary" %>
+    <% end %>
 
+    Task by: <%#= task.user.first_name %>
+    <%#= " | task by: #{task.user_first_name}  " %>
+  </li>
 </div>

@@ -6,8 +6,7 @@
 	</ul>
 <% end %>
 
-<br>
-<%= form_for @project do |f| %>
+<%= form_for @project, html: { class: "short_form"}  do |f| %>
 	<div class="form-group">
 		<%= f.label :title %>
 		<%= f.text_field :title, class: "form-control" %>

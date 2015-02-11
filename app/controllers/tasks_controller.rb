@@ -24,6 +24,7 @@ class TasksController < ApplicationController
 	def edit
 		#find_project
 		#find_task
+		#respond_to do |format|
 	end
 	def update
 		#find_project
