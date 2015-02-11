@@ -4,11 +4,12 @@
 <%= link_to "Edit project", edit_project_path(@project), class: "btn btn-lg btn-info" %>
 <%= link_to "Delete project", project_path(@project), class: "btn btn-lg btn-danger", method: :delete, data: {confirm: "are you sure?"} %>
 
-<hr width="80%">
-<div class="">
+<hr class="short_form">
+<div class="row">
   <h2 style="display: inline-block">Tasks list table:</h2>
   <%= link_to "Create New Task", new_project_task_path(@project), class: "btn btn-lg btn-primary pull-right", method: :get, html: { style: "display: inline-block" } %>
 </div>
+
 <div class="row well">
   <div class="col-md-6 tasks">
     <h3>Unfinished tasks:</h3>
@@ -29,8 +30,8 @@
 </div>
 
 
-<hr><h2>Create a Discussion:</h2>
-<div class="discussion-form">
+<hr class="short_form"><!-- Create a Discussion: -->
+<div class="discussion-form border_box">
   <%= render "/discussions/form" %>  
 </div>
 
@@ -41,5 +42,4 @@
   <% end %>
 </div>
 
-
-<!-- btn, btn-sm, btn-md, btn-lg, btn-primary, btn-info, btn-warning, btn-danger -->
+<!-- btn, btn-sm, btn-md, btn-lg, btn-default, btn-primary, btn-success, btn-info, btn-warning, btn-danger -->

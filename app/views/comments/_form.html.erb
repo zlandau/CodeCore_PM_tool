@@ -1,5 +1,6 @@
 <!-- @comment || Comment.new    so we don't have to insert Comment.new in both Questions and Answers controller page.  -->
-<%= simple_form_for [discussion, (@comment || Comment.new)], html: { class: 'form-horizontal' } do |f| %>
+<%= simple_form_for [discussion, (@comment || Comment.new)], 
+                  html: { class: "form-horizontal short_form" } do |f| %>
   <%= f.input :body, label: "comment body" %>
-  <%= f.submit class: "btn btn-info btn-sm" %>
+  <%= f.submit class: "btn btn-sm btn-warning" %>
 <% end %>

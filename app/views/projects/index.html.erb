@@ -3,13 +3,19 @@
 
   <!-- search bar input form -->
   <div class="col-md-3">
-  <%= form_tag(projects_path, method: "get") do %>
-    <div class="form-group">
-      <%= label_tag(:q, "Search project:") %>
-      <%= text_field_tag(:q) %>
-      <%= submit_tag("Search") %>
-    </div>
-  <% end %>
+    <div class="input-group">
+
+    <%= form_tag(projects_path, method: "get") do %>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Search") %>
+    <% end %>
+
+      <input type="text" class="form-control" placeholder="String for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+
   </div>
 </div>
 <!--
@@ -28,7 +34,9 @@
   </ul>
 
 
-<hr>Total count = <%= @total_count %>
+<hr class="short_form">
+(Total count = <%= @total_count %>)  <!-- WXU??? counter -->
+<span style="text-align: center">  <!-- WXU??? -->
 page: <% for i in 0..(@total_count / 5) do %>
   <% if @page_count == i %>
     <%= i+1 %>
@@ -36,3 +44,4 @@ page: <% for i in 0..(@total_count / 5) do %>
     <%= link_to "#{i+1}", projects_path(:pg => i+1) %>
   <% end %>
 <% end %>
+</span>

@@ -1,5 +1,6 @@
-<div id="<%= dom_id(discussion) %>" class="well inline-block">
-  <%= form_for discussion, url: project_discussion_path(@project, discussion) do |f| %>
+<div id="<%= dom_id(discussion) %>" class="well">
+  <%= form_for discussion, url: project_discussion_path(@project, discussion), 
+                class: "short_form", html: { style: "display: inline-block" } do |f| %>
     <%= f.text_field :title, :value => discussion.title %>
     <%= f.text_area :description, :value => discussion.description %>
 
@@ -15,13 +16,14 @@
   <%#= button_to "Delete", project_discussion_path(@project.id, discussion.id), method: :delete, data: {confirm: "delete this discussion for real?"}, class: "btn btn-sm btn-danger" %>
 
   <p>Discussion by: <%#= discussion.user.first_name %></p>
+ 
 
-  <%= link_to "Add new comment", discussion_comments_path(discussion), method: :post, class: "btn btn-sm btn-primary" %>
+  <%#= link_to "Add new comment", discussion_comments_path(discussion), method: :post, class: "btn btn-lg btn-warning" %>
   <div class="comment-form">
     <%= render partial: "/comments/form", locals: { discussion: discussion } %>  <!-- refactor comment form into comment's view folder partial form -->
   </div>
 
-  <hr>
+
   <div class="comments">
     <ul>
       <% discussion.comments.each do |comt| %>   <!-- refactor code to _comment.html.erb -->

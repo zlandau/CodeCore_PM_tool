@@ -22,5 +22,11 @@
 		<%= f.date_field :due_date, class: "form-control" %>
 	</div>
 	<br>
+	<div class="form-group">
+		<%= f.label :projectmembers_ids %>
+		<%= f.member_check_boxes :projectmember_id, User.all, :id, :full_name %>
+	</div>
+	<br>
+
 	<%= f.submit class: "btn btn-primary" %>
 <% end %> 
