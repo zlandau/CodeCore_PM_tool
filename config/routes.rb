@@ -13,6 +13,11 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy]   
   end
 
+
+  # delayed_job and delayed_job_web routing
+  match "delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
+
+  
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   get "/about" => "homes#about"

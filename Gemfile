@@ -49,13 +49,15 @@ gem 'delayed_job_web'         #UI for seeing the queued tasks
 
 gem 'simple_form'  #for simple_form usage
 gem 'friendly_id', '~> 5.1.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
+
 group :development do 
 	gem "colorize"
 	gem "interactive_editor"
 	gem "hirb"
 	gem "awesome_print"
 
-  gem "letter_opener" #to do with email client/mailer(?)
+  gem "letter_opener" #used to open a test email from ActionMailer in a new browser page
+
 end
 
 group :development, :test do
