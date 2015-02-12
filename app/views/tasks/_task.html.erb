@@ -7,12 +7,7 @@
  
 
     <%= link_to "Update task", edit_project_task_path(@project, task), method: :get, class: "btn btn-sm btn-info"%>
-    <%= link_to "Delete task", 
-                project_task_path(@project, task), 
-                method: :delete, 
-                data: {confirm: "delete this task for real?"}, 
-                class: "btn btn-sm btn-danger", 
-                remote: true %>  <!-- turn link_to AJAX instead of HTML -->
+    <%= link_to "Delete task", project_task_path(@project, task), method: :delete, data: {confirm: "delete this task for real?"}, class: "btn btn-sm btn-danger", remote: true %>  <!-- turn link_to AJAX instead of HTML -->
     <%#= link_to task_status, project_task_path(@project, task), method: :patch,  class: "btn btn-sm btn-primary", remote: true %>
 
     <%= form_for task, url: project_task_path(@project, task), html: { style: "display: inline-block" } do |f| %>

@@ -1,6 +1,5 @@
 <div id="<%= dom_id(discussion) %>" class="well">
-  <%= form_for discussion, url: project_discussion_path(@project, discussion), 
-                class: "short_form", html: { style: "display: inline-block" } do |f| %>
+  <%= form_for discussion, url: project_discussion_path(@project, discussion), class: "short_form", html: { style: "display: inline-block" } do |f| %>
     <%= f.text_field :title, :value => discussion.title %>
     <%= f.text_area :description, :value => discussion.description %>
 
@@ -14,7 +13,7 @@
   <!-- remote: true -- means rails send form via JS instead of default HTML -->
 
   <%#= button_to "Delete", project_discussion_path(@project.id, discussion.id), method: :delete, data: {confirm: "delete this discussion for real?"}, class: "btn btn-sm btn-danger" %>
-<%= 
+
   <p>Discussion by: <%= discussion.user.first_name %></p>
  
 

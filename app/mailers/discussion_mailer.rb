@@ -1,8 +1,8 @@
 class DiscussionMailer < ApplicationMailer
-  def notify_discussion_owner (comment)
+  def notify_discussion_owner (comment, my_user)
     @comment = comment
     @discussion = @comment.discussion
-    @user = @discussion.project.user
-    mail to: @user.email, subject: "You've got a comment!"    
+    @my_user = my_user
+    mail to: @discussion.user.email, subject: "You've got a comment!"    
   end  
 end

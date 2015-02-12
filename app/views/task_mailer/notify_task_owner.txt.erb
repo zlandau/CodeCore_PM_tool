@@ -1,8 +1,8 @@
-Hello <%= @user.full_name %>
+Hello <%= @task.user.first_name %>
 
-Your task has been marked "Done"! 
+Your task has been marked "Done" by user <%= @my_user.full_name %>! 
 
-For project: <%= @project.title %>, task: <%= @task.title %>
+For project: <%= @task.project.title %>, task: <%= @task.title %>
 
 Regards,
 

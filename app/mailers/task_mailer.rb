@@ -1,7 +1,7 @@
 class TaskMailer < ApplicationMailer
-  def notify_task_owner (task)
+  def notify_task_owner (task, my_user)
     @task = task
-    @user = @task.project.user
-    mail to: @user.email, subject: "You have a completed task!"    
+    @my_user = my_user
+    mail to: @task.user.email, subject: "You have a completed task!"   
   end
 end

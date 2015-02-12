@@ -1,20 +1,18 @@
 class CommentsController < ApplicationController
+	before_action :authenticate_user! 	
 	before_action :find_discussion
 	before_action :find_comment, only: [:update, :destroy]
-	before_action :authenticate_user! 
 
 	def create
 		@comment = Comment.new comment_params
 		@comment.discussion = @discussion
-
-
 
 		respond_to do |format|		
 			if @comment.save
 
 				if @comment.user != @discussion.user
 					# delayed email job
-		      DiscussionMailer.notify_discussion_owner(@comment).deliver_later
+		      DiscussionMailer.notify_discussion_owner(@comment, current_user).deliver_later
 		    end
 		    
 				format.js { render } #render /comments/create.js.erb

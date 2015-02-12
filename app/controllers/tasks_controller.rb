@@ -1,7 +1,8 @@
 class TasksController < ApplicationController
+	before_action :authenticate_user! 
 	before_action :find_project
 	before_action :find_task, only: [:edit, :show, :update, :destroy]
-	before_action :authenticate_user! 
+
 
 	def new
 		#find_project
@@ -14,7 +15,7 @@ class TasksController < ApplicationController
 		respond_to do |format|
 			
 			if @task.save
-				TaskMailer.notify_task_owner(@task).deliver_later
+				TaskMailer.notify_task_owner(@task, current_user).deliver_later
 
 				format.js { render } #render "/tasks/create.js.erb"
 				format.html { redirect_to project_path(@project),  notice: "Task created successfully." }
@@ -33,13 +34,14 @@ class TasksController < ApplicationController
 		#find_project
 		#find_task
 
-
+		old_status = @task.status
 
 		respond_to do |format|
 			if @task.update task_params
-				if current_user != @task.user
-					TaskMailer.notify_task_owner(@task).deliver_later
+				if (current_user != @task.user) && (old_status == false) && (@task.status == true)
+					TaskMailer.notify_task_owner(@task, current_user).deliver
 				end
+
 				format.js { render } #render "/tasks/update.js.erb"
 				format.html { redirect_to project_path(@project), notice: "Task updated successfully" }
 			else
