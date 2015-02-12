@@ -21,7 +21,7 @@
       <%= f.submit task_status, class: "btn btn-sm btn-primary" %>
     <% end %>
 
-    Task by: <%#= task.user.first_name %>
+    Task by: <%= task.user.full_name %>
     <%#= " | task by: #{task.user_first_name}  " %>
   </li>
 </div>

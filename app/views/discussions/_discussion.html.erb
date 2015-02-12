@@ -14,8 +14,8 @@
   <!-- remote: true -- means rails send form via JS instead of default HTML -->
 
   <%#= button_to "Delete", project_discussion_path(@project.id, discussion.id), method: :delete, data: {confirm: "delete this discussion for real?"}, class: "btn btn-sm btn-danger" %>
-
-  <p>Discussion by: <%#= discussion.user.first_name %></p>
+<%= 
+  <p>Discussion by: <%= discussion.user.first_name %></p>
  
 
   <%#= link_to "Add new comment", discussion_comments_path(discussion), method: :post, class: "btn btn-lg btn-warning" %>

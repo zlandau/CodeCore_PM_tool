@@ -2,7 +2,8 @@
 <p>Project Description: <%= @project.description %><br>
    Project due date: <%= @project.due_date %><br>
    Project members: <strong><%= @project.project_users.map(&:full_name).join(", ") %></strong><br>
-   Project tags: <em><%= @project.tags.map(&:tag_name).join(" -- ") %></em></p>
+   Project tags: <em><%= @project.tags.map(&:tag_name).join(" -- ") %></em><br>
+   Project owner: <%= @project.user.full_name %></p>
 <%= link_to "Edit project", edit_project_path(@project), class: "btn btn-lg btn-info" %>
 <%= link_to "Delete project", project_path(@project), class: "btn btn-lg btn-danger", method: :delete, data: {confirm: "are you sure?"} %>
 

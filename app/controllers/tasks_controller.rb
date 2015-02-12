@@ -32,8 +32,14 @@ class TasksController < ApplicationController
 	def update
 		#find_project
 		#find_task
+
+
+
 		respond_to do |format|
 			if @task.update task_params
+				if current_user != @task.user
+					TaskMailer.notify_task_owner(@task).deliver_later
+				end
 				format.js { render } #render "/tasks/update.js.erb"
 				format.html { redirect_to project_path(@project), notice: "Task updated successfully" }
 			else

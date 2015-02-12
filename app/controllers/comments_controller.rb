@@ -7,10 +7,16 @@ class CommentsController < ApplicationController
 		@comment = Comment.new comment_params
 		@comment.discussion = @discussion
 
+
+
 		respond_to do |format|		
 			if @comment.save
-				# delayed email job
-	      DiscussionMailer.notify_discussion_owner(@comment).deliver_later				
+
+				if @comment.user != @discussion.user
+					# delayed email job
+		      DiscussionMailer.notify_discussion_owner(@comment).deliver_later
+		    end
+		    
 				format.js { render } #render /comments/create.js.erb
 				format.html { 			redirect_to project_path(@discussion.project), notice: "Comment created successfully" }
 			else

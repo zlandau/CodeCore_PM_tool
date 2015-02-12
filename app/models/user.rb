@@ -5,7 +5,10 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :projects, dependent: :nullify
+  has_many :tasks, dependent: :nullify
   has_many :discussions, dependent: :nullify
+  has_many :comments, dependent: :nullify
+
   
   has_many :members, dependent: :destroy
   has_many :joint_projs, through: :members, source: :project

@@ -1,7 +1,7 @@
 class Project < ActiveRecord::Base
   belongs_to :user
-	has_many :discussions, dependent: :nullify
-	has_many :tasks, dependent: :nullify
+	has_many :discussions, dependent: :destroy
+	has_many :tasks, dependent: :destroy
 
   has_many :members, dependent: :destroy
   has_many :project_users, through: :members, source: :user

@@ -2,7 +2,7 @@
   <li>
     <%= comment.body %>  ||
     <%= stdDate(comment.created_at) %>  ||<!-- stdDate is defined in application_helper.rb -->
-    Comment by: <%#= comment.user.first_name %>
+    Comment by: <%= comment.discussion.user.first_name %>
     <%#= " | Comment by: #{comment.user_first_name}  " %> 
     
     <%= link_to "Update comment", discussion_comment_path(discussion.id, comment.id), method: :patch, class: "btn btn-sm btn-info", remote: true %>
