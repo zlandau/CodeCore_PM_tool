@@ -4,10 +4,11 @@ class Project < ActiveRecord::Base
 	has_many :tasks, dependent: :nullify
 
   has_many :members, dependent: :destroy
-  has_many :projectmembers, through: :members, source: :user
+  has_many :project_users, through: :members, source: :user
   
-	has_many :categories, dependent: :nullify
-	
+	has_many :classifications, dependent: :destroy
+	has_many :tags, through: :classifications
+  
 	validates :title, presence: true, uniqueness: true
 
   def done_tasks

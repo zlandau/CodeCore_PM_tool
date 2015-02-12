@@ -21,11 +21,14 @@ class ProjectsController < ApplicationController
 
 	def create
 		@project = Project.new project_params
+#		render text: project_params.to_yaml
+
 		if @project.save
 			redirect_to project_path(@project), notice: "Project created successfully"
 		else
 			render :new, alert: "Project failed upon creation."
 		end
+
 	end
 
 	def edit
@@ -62,7 +65,7 @@ class ProjectsController < ApplicationController
 
 	def project_params
 		params.require(:project).permit(:title, :description, :due_date, 
-					:pg, {member_ids: []})
+					:pg, {project_user_ids: []})
 	end
 
 end

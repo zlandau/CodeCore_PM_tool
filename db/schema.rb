@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150211211238) do
+ActiveRecord::Schema.define(version: 20150212012532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20150211211238) do
   end
 
   add_index "categories", ["project_id"], name: "index_categories_on_project_id", using: :btree
+
+  create_table "classifications", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "classifications", ["project_id"], name: "index_classifications_on_project_id", using: :btree
+  add_index "classifications", ["tag_id"], name: "index_classifications_on_tag_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.text     "body"
@@ -78,6 +88,12 @@ ActiveRecord::Schema.define(version: 20150211211238) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string   "tag_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string   "title"
     t.date     "due_date"
@@ -112,6 +128,8 @@ ActiveRecord::Schema.define(version: 20150211211238) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "categories", "projects"
+  add_foreign_key "classifications", "projects"
+  add_foreign_key "classifications", "tags"
   add_foreign_key "comments", "discussions"
   add_foreign_key "discussions", "projects"
   add_foreign_key "members", "projects"

@@ -23,10 +23,15 @@
 	</div>
 	<br>
 	<div class="form-group">
-		<%= f.label :projectmembers_ids %>
-		<%= f.member_check_boxes :projectmember_id, User.all, :id, :full_name %>
+		<%= f.label :project_user_ids %>
+
+		<% User.all.each do |user|  %>
+			<%= f.check_box :project_user_ids, { multiple: true}, user.id, nil %>
+			<%= f.label user.full_name %>
+		<% end %>
 	</div>
 	<br>
+
 
 	<%= f.submit class: "btn btn-primary" %>
 <% end %> 
