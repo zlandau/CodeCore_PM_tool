@@ -1,0 +1,48 @@
+<h1 class="page_top">Project title: <%= @project.title %></h1>
+<p>Project Description: <%= @project.description %><br>
+   Project due date: <%= @project.due_date %><br>
+   Project members: <strong><%= @project.project_users.map(&:full_name).join(", ") %></strong><br>
+   Project tags: <em><%= @project.tags.map(&:tag_name).join(" -- ") %></em><br>
+   Project owner: <%= @project.user.full_name %></p>
+<%= link_to "Edit project", edit_project_path(@project), class: "btn btn-lg btn-info" %>
+<%= link_to "Delete project", project_path(@project), class: "btn btn-lg btn-danger", method: :delete, data: {confirm: "are you sure?"} %>
+
+<hr class="short_form">
+<div class="row">
+  <h2 style="display: inline-block">Tasks list table:</h2>
+  <%= link_to "Create New Task", new_project_task_path(@project), class: "btn btn-lg btn-primary pull-right", method: :get, html: { style: "display: inline-block" } %>
+</div>
+
+<div class="row well">
+  <div class="col-md-6 tasks">
+    <h3>Unfinished tasks:</h3>
+    <ul>
+      <% @project.not_done_tasks.each do |t| %>
+        <%= render partial: "/tasks/task", locals: { task: t } %>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-md-6 tasks">
+    <h3>Done tasks:</h3>
+    <ul>
+      <% @project.done_tasks.each do |t| %>
+        <%= render partial: "/tasks/task", locals: { task: t } %>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+
+<hr class="short_form"><!-- Create a Discussion: -->
+<div class="discussion-form border_box">
+  <%= render "/discussions/form" %>  
+</div>
+
+<h2>Discussions:</h2>  <!-- print all discussions -->
+<div class="discussions">
+  <% @project.discussions.each do |dis| %>
+    <%= render partial: "/discussions/discussion", locals: { discussion: dis } %>
+  <% end %>
+</div>
+
+<!-- btn, btn-sm, btn-md, btn-lg, btn-default, btn-primary, btn-success, btn-info, btn-warning, btn-danger -->

@@ -1,0 +1,49 @@
+<% if @project.errors.any? %>
+	<ul>
+		<% @project.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<%= form_for @project, html: { class: "short_form"}  do |f| %>
+	<div class="form-group">
+		<%= f.label :title %>
+		<%= f.text_field :title, class: "form-control" %>
+	</div>
+	<br>
+	<div class="form-group">
+		<%= f.label :description %>
+		<%= f.text_field :description, class: "form-control" %>
+	</div>
+	<br>
+	<div class="form-group">
+		<%= f.label :due_date %>
+		<%= f.date_field :due_date, class: "form-control" %>
+	</div>
+	<br>
+	<div class="form-group">
+		<%= f.label :project_user_ids %>
+
+		<% User.all.each do |user|  %>
+			<%= f.check_box :project_user_ids, { multiple: true }, user.id, nil %>
+			<%= f.label user.full_name %>
+		<% end %>
+	</div>
+	<br>
+	<div class="form-group">
+		<%= f.label :project_tag_ids %>
+
+   	<%= f.collection_check_boxes :tag_ids, Tag.all, :id, :tag_name %>
+
+<!--	
+		<#% Tag.all.each do |t| %>
+			<#%= f.check_box :project_tag_ids, { multiple: true }, t.id, nil %>
+			<#%= f.label t.tag_name %>
+		<#% end %>
+-->
+
+	</div>
+
+	<%= f.submit class: "btn btn-primary" %>
+<% end %> 

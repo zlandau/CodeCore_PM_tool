@@ -1,0 +1,13 @@
+<h1>Index all tasks!</h1>
+<h3>Unfinished task list:</h3>
+<div class="tasks">
+  <% @project.not_done_tasks.each do |t| %>
+    <%= render partial: "/tasks/task", locals: { task: t } %>
+  <% end %>
+</div>
+<h3>Done task list:</h3>
+<div class="tasks">
+  <% @project.done_tasks.each do |t| %>
+    <%= render partial: "/tasks/task", locals: { task: t } %>
+  <% end %>
+</div>

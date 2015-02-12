@@ -1,0 +1,26 @@
+<% if @task.errors.any? %>
+	<ul>
+		<% @task.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<%= form_for @task, url: project_task_path(@project, @task),
+						html: { class: "form_horizontal short_form" }  do |f| %>
+	<div class="form-group">
+		<%= f.label :title %>
+		<%= f.text_field :title, class: "form-control" %>
+	</div>
+	<br>
+	<div class="form-group">
+		<%= f.label :body %>
+		<%= f.text_area :body, class: "form-control" %>
+	</div>
+	<br>
+	<div class="form-group">
+		<%= f.label :due_date %>
+		<%= f.date_field :due_date, class: "form-control" %>
+	</div>
+	<%= f.submit class: "btn btn-primary" %>
+<% end %>

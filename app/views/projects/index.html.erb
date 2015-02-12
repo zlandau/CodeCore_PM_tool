@@ -1,0 +1,47 @@
+<div class="page_top row"> 
+  <div class="col-md-9"><h1>Index all projects </h1></div>
+
+  <!-- search bar input form -->
+  <div class="col-md-3">
+    <div class="input-group">
+
+    <%= form_tag(projects_path, method: "get") do %>
+        <%= text_field_tag(:q) %>
+        <%= submit_tag("Search") %>
+    <% end %>
+
+      <input type="text" class="form-control" placeholder="String for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+
+  </div>
+</div>
+<!--
+<%# if @entire_projects.length == 0 %>
+	<em>No project found!</em>
+<% #else %>
+-->
+  <ul>
+    <% @entire_projects.each do |p| %>
+      <li>
+        <h2><%= link_to p.title, p %></h2>
+        <%= p.description %><br>
+        <%= p.due_date %>
+      </li>
+    <% end %>
+  </ul>
+
+
+<hr class="short_form">
+(Total count = <%= @total_count %>)  <!-- WXU??? counter -->
+<span style="text-align: center">  <!-- WXU??? -->
+page: <% for i in 0..(@total_count / 5) do %>
+  <% if @page_count == i %>
+    <%= i+1 %>
+  <% else %>
+    <%= link_to "#{i+1}", projects_path(:pg => i+1) %>
+  <% end %>
+<% end %>
+</span>

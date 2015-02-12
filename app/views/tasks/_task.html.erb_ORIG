@@ -1,0 +1,28 @@
+<div id="<%= dom_id(task) %>">
+  <%= form_for task, url: project_task_path(@project, task)  do |f| %>
+    <%= f.text_field :title, :value => task.title %>
+    <%= f.text_area :body, :value => task.body %>
+    <%= f.date_field :due_date, :value => task.due_date %>
+    <%#= stdDate(task.created_at) %>  <!-- stdDate is defined in application_helper.rb -->
+    <%= f.submit "Update Task", class: "btn btn-sm btn-info" %>
+  <% end %>  
+
+  <%#= link_to "Update task", project_task_path(@project, task), method: :patch, class: "btn btn-sm btn-info", remote: true %>
+  <%= link_to "Delete task", 
+              project_task_path(@project, task), 
+              method: :delete, 
+              data: {confirm: "delete this task for real?"}, 
+              class: "btn btn-sm btn-danger", 
+              remote: true %>  <!-- turn link_to AJAX instead of HTML -->
+  <%#= link_to task_status, project_task_path(@project, task), method: :patch,  class: "btn btn-sm btn-primary", remote: true %>
+
+  <%= form_for task, url: project_task_path(@project, task) do |f| %>
+    <% task_status = task.status ? "Done": "Not Done" %>
+    <%= f.hidden_field :status, :value => (!task.status) %>    
+    <%= f.submit task_status, class: "btn btn-sm btn-primary" %>
+  <% end %>
+
+  Task by: <%#= task.user.first_name %>
+  <%#= " | task by: #{task.user_first_name}  " %>
+
+</div>

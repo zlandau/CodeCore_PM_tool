@@ -1,0 +1,6 @@
+$("#<%= dom_id(@comment) %>").SlideUp();
+$("#<%= dom_id(@comment) %>").SlideDown();
+
+
+  //JS selector is #comment_id then .comments to ensure unique preprend
+  $('#<%= dom_id(@comment) %> .comments').append("<%= j render partial: '/comments/comment', locals: { discussion: @discussion, comment: @comment } %>");  //'j' escapes javascript \", \n, and all special chars
